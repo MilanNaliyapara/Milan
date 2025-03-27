@@ -1,0 +1,730 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: white;
+}
+
+footer.section-spacing.blurwithfilterbtn {
+    display: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+.chat-container {
+    display: flex;
+    height: 85vh;
+    background: linear-gradient(90deg, rgba(44,43,45,1) 1%, rgba(98,24,22,1) 56%, rgba(75,21,3,1) 96%);
+}
+
+/* Left side user list panel */
+.user-list-panel {
+    flex: 1;
+    padding: 10px;
+    background-color: #1c1c1c;
+    display: flex;
+    flex-direction: column;
+}
+
+.user {
+    background: linear-gradient(90deg, rgba(170,159,181,1) 1%, rgba(82,52,51,1) 20%, rgba(86,86,144,1) 96%);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: math;
+    transition: background 0.3s;
+}
+
+    .user:hover {
+        background: linear-gradient(90deg, rgba(170,159,181,1) 1%, rgba(82,52,51,1) 50%, rgba(86,86,144,1) 100%);
+    }
+
+    .user h4 {
+        margin: 0;
+    }
+
+    .user img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+/* Right side conversation panel */
+.conversation-panel {
+    flex: 3;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.conversation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(170,159,181,1) 1%, rgba(82,52,51,1) 56%, rgba(86,86,144,1) 96%);
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-family: math;
+    color: #181111;
+}
+
+    .conversation-header h3 {
+        margin: 0;
+        font-size: 1.2em;
+    }
+
+.message-list {
+    flex: 1;
+    margin-top: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/Styles/img/ChatbagroundImg.jpg'); /* Replace 'your-image-url.jpg' with the actual path to your image */
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    position: relative; /* To allow stacking content over the background */
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.message-sent {
+    background-color: #dcf8c6; /* Light green background for sent messages */
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 15px 15px 0 15px;
+    margin: 5px 0;
+    align-self: flex-end; /* Aligns sent messages to the right */
+    max-width: 70%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+    position: relative;
+}
+
+.message-received {
+    background-color: #fcceff; /* White background for received messages */
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 15px 15px 15px 0;
+    margin: 5px 0;
+    align-self: flex-start; /* Aligns received messages to the left */
+    max-width: 70%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+    position: relative;
+}
+
+    .message-sent p,
+    .message-received p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+.message-sentTIME {
+    align-self: flex-end;
+    font-family: sans-serif;
+    position: relative;
+}
+
+.message-receivedTIME {
+    align-self: flex-start;
+    font-family: sans-serif;
+    position: relative;
+}
+
+
+    .message-sentTIME p,
+    .message-receivedTIME p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+.message-sentImagesVideo {
+    align-self: flex-end;
+    position: relative;
+}
+
+.message-receivedImagesVideo {
+    align-self: flex-start;
+    font-family: sans-serif;
+    position: relative;
+}
+
+.message-timestamp {
+    display: block;
+    font-size: 0.8em;
+    color: #888;
+    margin-top: -2px;
+    font-family: math;
+    bottom: 5px;
+    right: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .close:hover, .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.message-input {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+    .message-input input {
+        flex-grow: 1;
+        padding: 10px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+    }
+
+#sendBtn {
+    background-color: #28a745; /* Green background */
+    color: white; /* White icon color */
+    border: none; /* Remove borders */
+    border-radius: 50%; /* Circular shape */
+    width: 50px; /* Button width */
+    height: 50px; /* Button height */
+    display: flex; /* Align icon */
+    justify-content: center; /* Center icon horizontally */
+    align-items: center; /* Center icon vertically */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    font-size: 24px; /* Size of the icon */
+    transition: background-color 0.3s ease; /* Smooth background color change */
+}
+
+    #sendBtn:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+
+    #sendBtn i {
+        margin: 0; /* No margin around icon */
+        font-size: 20px;
+    }
+
+#fileBtn {
+    background-color: #702963; /* Green background */
+    color: white; /* White icon color */
+    border: none; /* Remove borders */
+    border-radius: 50%; /* Circular shape */
+    width: 50px; /* Button width */
+    height: 50px; /* Button height */
+    display: flex; /* Align icon */
+    justify-content: center; /* Center icon horizontally */
+    align-items: center; /* Center icon vertically */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    font-size: 24px; /* Size of the icon */
+    transition: background-color 0.3s ease; /* Smooth background color change */
+}
+
+    #fileBtn:hover {
+        background-color: #770737; /* Darker green on hover */
+    }
+
+    #fileBtn i {
+        margin: 0; /* No margin around icon */
+        font-size: 20px;
+    }
+
+
+
+/* Basic link styles */
+.file-link {
+    display: inline-block;
+    background-color: #303b46; /* Button background color */
+    color: white; /* Text color */
+    width: 400px;
+    padding: 5px 10px; /* Padding inside the link */
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Font size */
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    margin-top: 10px; /* Space above the link */
+    text-align: center; /* Center the text */
+    font-weight: 500; /* Medium weight text */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+}
+
+    /* Hover effect */
+    .file-link:hover {
+        background-color: #1d2730; /* Darker blue on hover */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+    }
+
+/* Adding file icon */
+.file-link-icon {
+    font-size: 1.2rem; /* Slightly larger icon */
+}
+
+/* Responsive: Adjust button on smaller screens */
+@@media screen and (max-width: 600px) {
+    .file-link {
+        padding: 8px 12px; /* Smaller padding on mobile */
+        font-size: 0.9rem; /* Slightly smaller font */
+    }
+}
+
+audio {
+    width: 400px !important;
+    height: 50px !important;
+}
+
+    audio::-webkit-media-controls-panel {
+        background-color: #56aeff;
+    }
+
+    audio::-webkit-media-controls-play-button {
+        background-color: #b1d4e0;
+        border-radius: 50%;
+    }
+
+        audio::-webkit-media-controls-play-button:hover {
+            background-color: rgba(177, 212, 224, 0.7);
+        }
+
+.ui-widget-header {
+    border: 2px solid #dddddd;
+    background: #312f2f;
+    color: #632e2e;
+}
+
+.ui-dialog {
+    border-radius: 20px !important; /* Apply border radius to the dialog */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for better effect */
+}
+
+    .ui-dialog .ui-dialog-content {
+        border-radius: 20px; /* Make sure the content area inside has rounded corners as well */
+    }
+
+/*#cameraContainer {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 1000;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }*/
+
+/* Full-screen overlay to hide the background */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: none;
+    z-index: 999; /* Slightly lower than #cameraContainer */
+}
+
+/*#cameraContainer video {
+            width: 100%;
+            border-radius: 8px;
+
+        }
+
+        #cameraContainer button {
+            margin: 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            #cameraContainer button:hover {
+                background-color: #0056b3;
+            }*/
+#FileCameraBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 40%;
+    transform: translateX(-50%);
+    background-color: #702963;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    #FileCameraBtn:hover {
+        background-color: #770737;
+    }
+
+    #FileCameraBtn i {
+        font-size: 25px;
+    }
+
+#captureBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #007bff; /* Blue background */
+    color: white; /* White icon */
+    border: none;
+    border-radius: 50%; /* Circular shape */
+    width: 60px; /* Adjust size */
+    height: 60px; /* Adjust size */
+    font-size: 32px; /* Icon size */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+    #captureBtn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    #captureBtn i {
+        font-size: 25px; /* Adjust icon size */
+    }
+
+#switchCameraBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 60%;
+    transform: translateX(-50%);
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    #switchCameraBtn:hover {
+        background-color: #5a6268;
+    }
+
+    #switchCameraBtn i {
+        font-size: 25px;
+    }
+
+#cancelBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 70%;
+    transform: translateX(-50%);
+    background-color: #880808;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    #cancelBtn:hover {
+        background-color: #AA4A44;
+    }
+
+    #cancelBtn i {
+        font-size: 25px;
+    }
+
+#cameraContainer {
+    position: fixed;
+    top: 54%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 45%; /* Ensure enough space for video */
+    max-width: 50%;
+}
+
+    #cameraContainer video {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+
+#capturedImage {
+    display: none;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+#attachDialog {
+    background-color: #ffe8ff;
+    /*padding: 20px;*/
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    /*margin: 20px auto;*/
+    text-align: center;
+}
+
+.attach-options {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+}
+
+    .attach-options li {
+        margin: 10px;
+    }
+
+    .attach-options button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 100px;
+    }
+
+.icon-circle {
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+    .icon-circle i {
+        font-size: 20px;
+    }
+
+
+#videoContainer {
+    position: fixed;
+    top: 54%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 45%; /* Ensure enough space for video */
+    max-width: 50%;
+}
+
+    #videoContainer video {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+#startVideoRecordingBtn {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    color: #961717;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    #startVideoRecordingBtn:hover {
+        background-color: papayawhip;
+    }
+
+    #startVideoRecordingBtn i {
+        margin-top: 1px;
+        font-size: 35px;
+    }
+
+#stopVideoRecordingBtn {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    color: #961717;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    #stopVideoRecordingBtn:hover {
+        background-color: #0056b3;
+    }
+
+    #stopVideoRecordingBtn i {
+        margin-bottom: 1px;
+        font-size: 25px;
+    }
+
+#VideocancelBtn {
+    position: absolute;
+    bottom: 50px;
+    left: 60%;
+    transform: translateX(-50%);
+    background-color: #880808;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    #VideocancelBtn:hover {
+        background-color: #AA4A44;
+    }
+
+    #VideocancelBtn i {
+        font-size: 20px;
+    }
+
+#takePictureBtn .icon-circle {
+    background-color: #ff4081; /* Pink */
+}
+
+#uploadVideoBtn .icon-circle {
+    background-color: #03a9f4; /* Light Blue */
+}
+
+#uploadAudioBtn .icon-circle {
+    background-color: #ff5722; /* Orange */
+}
+
+#uploadImageBtn .icon-circle {
+    background-color: #8e24aa; /* Purple */
+}
+
+#uploadPdfBtn .icon-circle {
+    background-color: #f44336; /* Red */
+}
+
+#recordAudioBtn .icon-circle {
+    background-color: #ff9800; /* Amber */
+}
+
+#recordVideoBtn .icon-circle {
+    background-color: #4caf50; /* Green */
+}
+
+#CancleAttachbtn .icon-circle {
+    background-color: #830000; /* Black */
+}
+
+.attach-options span {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
