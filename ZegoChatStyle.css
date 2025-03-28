@@ -1,68 +1,135 @@
 ﻿body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
 }
 
 footer.section-spacing.blurwithfilterbtn {
     display: none;
 }
 
-/* width */
 ::-webkit-scrollbar {
     width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #444;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #998484;
 }
 
-    /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: #673a3a;
     }
 
 .chat-container {
     display: flex;
     height: 85vh;
-    background: linear-gradient(90deg, rgba(44,43,45,1) 1%, rgba(98,24,22,1) 56%, rgba(75,21,3,1) 96%);
+    background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 /* Left side user list panel */
 .user-list-panel {
-    flex: 1;
+    width: 300px;
     padding: 10px;
-    background-color: #1c1c1c;
+    background: #1a1a1a;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid #333;
+    transition: all 0.3s ease;
+}
+
+    .user-list-panel.hide {
+        width: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+.userAdmin {
+    background: linear-gradient(135deg, #673a3a 0%, #222 100%);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .userAdmin:hover {
+        background: linear-gradient(135deg, #673a3a 0%, #2a1111 100%);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+.userAdmin__avatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+    .userAdmin__avatar img:first-child {
+        width: 50px;
+        height: 50px;
+        border: solid;
+        border-color:goldenrod;
+        border-radius: 50%;
+    }
+
+    .userAdmin__avatar img:last-child {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 30px;
+        left: 27px;
+        border-radius: 50%;
+    }
+
+.userAdmin__info h3 {
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.userAdmin__info h4 {
+    margin: 0;
+    font-size: 0.9em;
+    color: #fff;
+    font-weight: normal;
 }
 
 .user {
-    background: linear-gradient(90deg, rgba(170,159,181,1) 1%, rgba(82,52,51,1) 20%, rgba(86,86,144,1) 96%);
+    background: linear-gradient(135deg, #444 0%, #222 100%);
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    font-family: math;
-    transition: background 0.3s;
+    transition: background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
     .user:hover {
-        background: linear-gradient(90deg, rgba(170,159,181,1) 1%, rgba(82,52,51,1) 50%, rgba(86,86,144,1) 100%);
+        background: linear-gradient(135deg, #555 0%, #333 100%);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .user h4 {
         margin: 0;
+        font-size: 1em;
+        color: #d9b9b9;
     }
 
     .user img {
@@ -74,75 +141,174 @@ footer.section-spacing.blurwithfilterbtn {
 
 /* Right side conversation panel */
 .conversation-panel {
-    flex: 3;
-    padding: 10px;
+    flex: 1;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    background: #121212;
 }
 
 .conversation-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, rgba(170,159,181,1) 1%, rgba(82,52,51,1) 56%, rgba(86,86,144,1) 96%);
-    padding: 10px 15px;
+    background: linear-gradient(135deg, #444 0%, #222 100%);
+    padding: 15px;
     border-radius: 10px;
-    font-family: math;
-    color: #181111;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
     .conversation-header h3 {
         margin: 0;
         font-size: 1.2em;
+        color: #b49999;
     }
+
+
+/*this toggle*/
+
+/* Smaller toggle switch */
+.custom-toggle-switch {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 25px;
+}
+
+    .custom-toggle-switch input {
+        display: none; /* Hide default checkbox */
+    }
+
+/* Toggle switch background and shape */
+.switch {
+    position: relative;
+    display: block;
+    /*background-color: #ffb800;*/ /* Default off background */
+    background: linear-gradient(135deg, #1f1616 0%, #883b3b 100%);
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+/* Circle (handle) */
+.switch-circle {
+    position: absolute;
+    top: 2px;
+    right: 2px; /* Start on the right for off state */
+    width: 21px;
+    height: 21px;
+    background-color: #936161;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Arrow inside the circle */
+.arrow {
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(135deg);  Left arrow for off state 
+    transition: transform 0.3s ease;
+}
+
+/* Checked state */
+input:checked + .switch {
+    background-color: #ddd; /* Gray background for on state */
+}
+
+    input:checked + .switch .switch-circle {
+        transform: translateX(-24px); /* Move the circle to the left */
+    }
+
+        input:checked + .switch .switch-circle .arrow {
+            transform: rotate(-45deg); /* Change arrow direction for "on" state */
+        }
+
+
+/*this toggle*/
+
+
+
+
 
 .message-list {
     flex: 1;
-    margin-top: 5px;
-    padding: 5px;
+    margin-top: 10px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    background-image: url('/Styles/img/ChatbagroundImg.jpg'); /* Replace 'your-image-url.jpg' with the actual path to your image */
-    background-size: cover; /* Ensures the image covers the entire container */
-    background-position: center; /* Centers the background image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    position: relative; /* To allow stacking content over the background */
+    /*background: #181818;*/
+    background: linear-gradient(178deg, #1b1a1a 0%, #1b0404 100%);
     border-radius: 10px;
     overflow-y: auto;
 }
 
 .message-sent {
-    background-color: #dcf8c6; /* Light green background for sent messages */
-    color: #000;
-    padding: 10px 15px;
+    background: linear-gradient(181deg, #3b3131 0%, #222 100%);
+    color: #fff;
+    padding: 10px 13px;
     border-radius: 15px 15px 0 15px;
     margin: 5px 0;
-    align-self: flex-end; /* Aligns sent messages to the right */
-    max-width: 70%;
+    align-self: flex-end;
+    max-width: 60%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    font-family: sans-serif;
     position: relative;
+    /* Ensures long text wraps */
+    word-wrap: break-word; /* For older browsers */
+    word-break: break-word; /* For modern browsers */
+    overflow-wrap: break-word; /* Handle word wrapping for long words */
+    font-size: 15px;
 }
 
 .message-received {
-    background-color: #fcceff; /* White background for received messages */
-    color: #000;
-    padding: 10px 15px;
+    background: linear-gradient(135deg, #3a3a3a 0%, #4b4c50 100%);
+    color: #fff;
+    padding: 10px 13px;
     border-radius: 15px 15px 15px 0;
     margin: 5px 0;
-    align-self: flex-start; /* Aligns received messages to the left */
-    max-width: 70%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    font-family: sans-serif;
+    align-self: flex-start;
+    max-width: 60%;
+    box-shadow: 1px 0px 3px rgb(45 43 49);
     position: relative;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    font-size: 15px;
 }
 
     .message-sent p,
     .message-received p {
         margin: 0;
-        font-size: 14px;
+        font-size: 10px;
         line-height: 1.4;
     }
+
+.message-timestamp {
+    display: block;
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 4px;
+}
+
+.message-sentImagesVideo {
+    align-self: flex-end;
+    position: relative;
+}
+
+.message-receivedImagesVideo {
+    align-self: flex-start;
+    font-family: sans-serif;
+    position: relative;
+}
 
 .message-sentTIME {
     align-self: flex-end;
@@ -157,34 +323,6 @@ footer.section-spacing.blurwithfilterbtn {
 }
 
 
-    .message-sentTIME p,
-    .message-receivedTIME p {
-        margin: 0;
-        font-size: 14px;
-        line-height: 1.4;
-    }
-
-.message-sentImagesVideo {
-    align-self: flex-end;
-    position: relative;
-}
-
-.message-receivedImagesVideo {
-    align-self: flex-start;
-    font-family: sans-serif;
-    position: relative;
-}
-
-.message-timestamp {
-    display: block;
-    font-size: 0.8em;
-    color: #888;
-    margin-top: -2px;
-    font-family: math;
-    bottom: 5px;
-    right: 10px;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -194,8 +332,7 @@ footer.section-spacing.blurwithfilterbtn {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
@@ -209,13 +346,14 @@ footer.section-spacing.blurwithfilterbtn {
     position: absolute;
     top: 15px;
     right: 35px;
-    color: #f1f1f1;
+    color: #fff;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
 }
 
-    .close:hover, .close:focus {
+    .close:hover,
+    .close:focus {
         color: #bbb;
         text-decoration: none;
         cursor: pointer;
@@ -231,99 +369,87 @@ footer.section-spacing.blurwithfilterbtn {
         flex-grow: 1;
         padding: 10px;
         border-radius: 20px;
-        border: none;
+        border: 1px solid #333;
         outline: none;
+        background: #222;
+        color: #fff;
     }
 
 #sendBtn {
-    background-color: #28a745; /* Green background */
-    color: white; /* White icon color */
-    border: none; /* Remove borders */
-    border-radius: 50%; /* Circular shape */
-    width: 50px; /* Button width */
-    height: 50px; /* Button height */
-    display: flex; /* Align icon */
-    justify-content: center; /* Center icon horizontally */
-    align-items: center; /* Center icon vertically */
-    cursor: pointer; /* Pointer cursor on hover */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
-    font-size: 24px; /* Size of the icon */
-    transition: background-color 0.3s ease; /* Smooth background color change */
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 24px;
+    transition: background-color 0.3s ease;
 }
 
     #sendBtn:hover {
-        background-color: #218838; /* Darker green on hover */
+        background-color: #388e3c;
     }
 
     #sendBtn i {
-        margin: 0; /* No margin around icon */
+        margin: 0;
         font-size: 20px;
     }
 
 #fileBtn {
-    background-color: #702963; /* Green background */
-    color: white; /* White icon color */
-    border: none; /* Remove borders */
-    border-radius: 50%; /* Circular shape */
-    width: 50px; /* Button width */
-    height: 50px; /* Button height */
-    display: flex; /* Align icon */
-    justify-content: center; /* Center icon horizontally */
-    align-items: center; /* Center icon vertically */
-    cursor: pointer; /* Pointer cursor on hover */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
-    font-size: 24px; /* Size of the icon */
-    transition: background-color 0.3s ease; /* Smooth background color change */
+    background-color: #607d8b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 24px;
+    transition: background-color 0.3s ease;
 }
 
     #fileBtn:hover {
-        background-color: #770737; /* Darker green on hover */
+        background-color: #455a64;
     }
 
     #fileBtn i {
-        margin: 0; /* No margin around icon */
+        margin: 0;
         font-size: 20px;
     }
 
-
-
-/* Basic link styles */
 .file-link {
     display: inline-block;
-    background-color: #303b46; /* Button background color */
+    background: linear-gradient(135deg, #635b5b 0%, #222 100%); /* Base background color */
     color: white; /* Text color */
-    width: 400px;
-    padding: 5px 10px; /* Padding inside the link */
+    padding: 10px 15px; /* Padding inside the link */
     text-decoration: none; /* Remove underline */
     font-size: 1rem; /* Font size */
     border-radius: 8px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
-    margin-top: 10px; /* Space above the link */
-    text-align: center; /* Center the text */
-    font-weight: 500; /* Medium weight text */
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Space between icon and text */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-top: 10px; /* Space on top */
+    text-align: center; /* Center align text */
+    font-weight: 500; /* Slightly bold font */
+    display: flex; /* Flexbox layout for alignment */
+    align-items: center; /* Vertical center alignment */
+    gap: 8px; /* Space between text and icon (if any) */
 }
 
-    /* Hover effect */
     .file-link:hover {
-        background-color: #1d2730; /* Darker blue on hover */
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+        background-color: #455a64; /* Darker background on hover */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Bigger shadow on hover */
     }
 
-/* Adding file icon */
 .file-link-icon {
-    font-size: 1.2rem; /* Slightly larger icon */
-}
-
-/* Responsive: Adjust button on smaller screens */
-@@media screen and (max-width: 600px) {
-    .file-link {
-        padding: 8px 12px; /* Smaller padding on mobile */
-        font-size: 0.9rem; /* Slightly smaller font */
-    }
+    font-size: 1.2rem;
 }
 
 audio {
@@ -332,83 +458,50 @@ audio {
 }
 
     audio::-webkit-media-controls-panel {
-        background-color: #56aeff;
+        background-color: #9c9c9c;
     }
 
     audio::-webkit-media-controls-play-button {
-        background-color: #b1d4e0;
+        background-color: #a18686;
         border-radius: 50%;
     }
 
         audio::-webkit-media-controls-play-button:hover {
-            background-color: rgba(177, 212, 224, 0.7);
+            background-color: #673a3a;
         }
 
 .ui-widget-header {
     border: 2px solid #dddddd;
-    background: #312f2f;
-    color: #632e2e;
+    background: #607d8b;
+    color: #ffffff;
 }
 
 .ui-dialog {
-    border-radius: 20px !important; /* Apply border radius to the dialog */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for better effect */
+    border-radius: 20px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
     .ui-dialog .ui-dialog-content {
-        border-radius: 20px; /* Make sure the content area inside has rounded corners as well */
+        border-radius: 20px;
     }
 
-/*#cameraContainer {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-            z-index: 1000;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }*/
-
-/* Full-screen overlay to hide the background */
 #overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    background: rgba(0, 0, 0, 0.5);
     display: none;
-    z-index: 999; /* Slightly lower than #cameraContainer */
+    z-index: 999;
 }
 
-/*#cameraContainer video {
-            width: 100%;
-            border-radius: 8px;
-
-        }
-
-        #cameraContainer button {
-            margin: 10px;
-            padding: 8px 12px;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-            #cameraContainer button:hover {
-                background-color: #0056b3;
-            }*/
 #FileCameraBtn {
     position: absolute;
     bottom: 20px;
     left: 40%;
     transform: translateX(-50%);
-    background-color: #702963;
+    background-color: #607d8b;
     color: white;
     border: none;
     border-radius: 50%;
@@ -423,7 +516,7 @@ audio {
 }
 
     #FileCameraBtn:hover {
-        background-color: #770737;
+        background-color: #455a64;
     }
 
     #FileCameraBtn i {
@@ -435,26 +528,26 @@ audio {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #007bff; /* Blue background */
-    color: white; /* White icon */
+    background-color: #4caf50;
+    color: white;
     border: none;
-    border-radius: 50%; /* Circular shape */
-    width: 60px; /* Adjust size */
-    height: 60px; /* Adjust size */
-    font-size: 32px; /* Icon size */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
     #captureBtn:hover {
-        background-color: #0056b3; /* Darker blue on hover */
+        background-color: #388e3c;
     }
 
     #captureBtn i {
-        font-size: 25px; /* Adjust icon size */
+        font-size: 25px;
     }
 
 #switchCameraBtn {
@@ -462,7 +555,7 @@ audio {
     bottom: 20px;
     left: 60%;
     transform: translateX(-50%);
-    background-color: #6c757d;
+    background-color: #607d8b;
     color: white;
     border: none;
     border-radius: 50%;
@@ -477,7 +570,7 @@ audio {
 }
 
     #switchCameraBtn:hover {
-        background-color: #5a6268;
+        background-color: #455a64;
     }
 
     #switchCameraBtn i {
@@ -489,7 +582,7 @@ audio {
     bottom: 20px;
     left: 70%;
     transform: translateX(-50%);
-    background-color: #880808;
+    background-color: #e53935;
     color: white;
     border: none;
     border-radius: 50%;
@@ -504,7 +597,7 @@ audio {
 }
 
     #cancelBtn:hover {
-        background-color: #AA4A44;
+        background-color: #c62828;
     }
 
     #cancelBtn i {
@@ -520,7 +613,7 @@ audio {
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 45%; /* Ensure enough space for video */
+    width: 45%;
     max-width: 50%;
 }
 
@@ -528,7 +621,6 @@ audio {
         width: 100%;
         border-radius: 8px;
     }
-
 
 #capturedImage {
     display: none;
@@ -538,13 +630,11 @@ audio {
 }
 
 #attachDialog {
-    background-color: #ffe8ff;
-    /*padding: 20px;*/
+    background-color: #f0f4f8;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    /*margin: 20px auto;*/
     text-align: center;
 }
 
@@ -573,7 +663,7 @@ audio {
     }
 
 .icon-circle {
-    background-color: #f5f5f5;
+    background-color: #b0bec5;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -588,7 +678,6 @@ audio {
         font-size: 20px;
     }
 
-
 #videoContainer {
     position: fixed;
     top: 54%;
@@ -598,7 +687,7 @@ audio {
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 45%; /* Ensure enough space for video */
+    width: 45%;
     max-width: 50%;
 }
 
@@ -613,7 +702,7 @@ audio {
     left: 50%;
     transform: translateX(-50%);
     background-color: white;
-    color: #961717;
+    color: #4caf50;
     border: none;
     border-radius: 50%;
     width: 50px;
@@ -627,7 +716,7 @@ audio {
 }
 
     #startVideoRecordingBtn:hover {
-        background-color: papayawhip;
+        background-color: #f0f4f8;
     }
 
     #startVideoRecordingBtn i {
@@ -641,7 +730,7 @@ audio {
     left: 50%;
     transform: translateX(-50%);
     background-color: white;
-    color: #961717;
+    color: #4caf50;
     border: none;
     border-radius: 50%;
     width: 50px;
@@ -655,7 +744,7 @@ audio {
 }
 
     #stopVideoRecordingBtn:hover {
-        background-color: #0056b3;
+        background-color: #f0f4f8;
     }
 
     #stopVideoRecordingBtn i {
@@ -668,7 +757,7 @@ audio {
     bottom: 50px;
     left: 60%;
     transform: translateX(-50%);
-    background-color: #880808;
+    background-color: #e53935;
     color: white;
     border: none;
     border-radius: 50%;
@@ -683,7 +772,7 @@ audio {
 }
 
     #VideocancelBtn:hover {
-        background-color: #AA4A44;
+        background-color: #c62828;
     }
 
     #VideocancelBtn i {
@@ -691,35 +780,35 @@ audio {
     }
 
 #takePictureBtn .icon-circle {
-    background-color: #ff4081; /* Pink */
+    background-color: #4caf50;
 }
 
 #uploadVideoBtn .icon-circle {
-    background-color: #03a9f4; /* Light Blue */
+    background-color: #03a9f4;
 }
 
 #uploadAudioBtn .icon-circle {
-    background-color: #ff5722; /* Orange */
+    background-color: #ff5722;
 }
 
 #uploadImageBtn .icon-circle {
-    background-color: #8e24aa; /* Purple */
+    background-color: #8e24aa;
 }
 
 #uploadPdfBtn .icon-circle {
-    background-color: #f44336; /* Red */
+    background-color: #f44336;
 }
 
 #recordAudioBtn .icon-circle {
-    background-color: #ff9800; /* Amber */
+    background-color: #ff9800;
 }
 
 #recordVideoBtn .icon-circle {
-    background-color: #4caf50; /* Green */
+    background-color: #4caf50;
 }
 
 #CancleAttachbtn .icon-circle {
-    background-color: #830000; /* Black */
+    background-color: #830000;
 }
 
 .attach-options span {
